@@ -17,14 +17,16 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1
+    - name: install lambda tools
+      run: dotnet tool install -g Amazon.Lambda.Tools
+      
     - name: Restore dependencies
       run: dotnet restore
+      
     - name: Build
-      run: dotnet build --configuration Release
-    - name: zip
-      uses: montudor/action-zip@v0.1.0
-      with:
-        args: zip -qq -r ./bundle.zip ./
+      run: dotnet lambda package --msbuild-parameters "/p:PublishReadyToRun=true --self-contained false"
+      working-directory: src/CassandraAPI
+      
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -32,4 +34,3 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-southeast-1
         function_name: CassandraAPI
-        zip_file: bundle.zip
