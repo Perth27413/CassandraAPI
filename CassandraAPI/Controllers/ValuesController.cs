@@ -13,7 +13,7 @@ namespace CassandraAPI.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "Cassandra1 IEIE", "Cassandra2 IEIE" };
+            return new string[] { "Cassandra1 Test Deploy1", "Cassandra2 Test Deploy2" };
         }
 
         // GET api/values/5
