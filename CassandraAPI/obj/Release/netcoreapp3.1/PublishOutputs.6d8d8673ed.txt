@@ -1,0 +1,14 @@
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\CassandraAPI.exe
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.Development.json
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.json
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\aws-lambda-tools-defaults.json
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\CassandraAPI.dll
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\CassandraAPI.deps.json
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\CassandraAPI.runtimeconfig.json
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\CassandraAPI.pdb
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\Amazon.Lambda.APIGatewayEvents.dll
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\Amazon.Lambda.ApplicationLoadBalancerEvents.dll
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\Amazon.Lambda.AspNetCoreServer.dll
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\Amazon.Lambda.Core.dll
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\Amazon.Lambda.Logging.AspNetCore.dll
+C:\Users\Matupoom\source\repos\CassandraAPI\CassandraAPI\obj\Release\netcoreapp3.1\PubTmp\Out\Amazon.Lambda.Serialization.SystemTextJson.dll
