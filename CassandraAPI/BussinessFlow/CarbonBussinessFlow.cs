@@ -28,6 +28,12 @@ namespace CassandraAPI.BussinessFlow
             return carbonHistory.Select(a=>a.carbonAmount).Sum();
         }
 
+        public int TotalCarbon()
+        {
+            List<CarbonHistoryEntity> carbonHistory = this.baseRepository.Gets<CarbonHistoryEntity>();
+            return carbonHistory.Select(a => a.carbonAmount).Sum();
+        }
+
         public double TotalEarn(int userId)
         {
             List< OnlineTimeEntity> userTimeInfo = this.baseRepository.Gets<OnlineTimeEntity>(a=>a.userId == userId);
@@ -36,9 +42,14 @@ namespace CassandraAPI.BussinessFlow
             return TotalEarn;
         }
 
-        public int TotalTodayById(int userId)
+        public int CarbonTodayById(int userId)
         {
             return this.baseRepository.GetItem<CarbonPerDayEntity>(a=>a.userId == userId).carbonPerDay;
+        }
+
+        public int CarbonToday()
+        {
+            return this.baseRepository.Gets<CarbonPerDayEntity>().Select(a=>a.carbonPerDay).Sum();
         }
 
         public double TodayEarnById(int userId)

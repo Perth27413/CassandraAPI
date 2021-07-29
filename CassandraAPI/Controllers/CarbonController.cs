@@ -17,9 +17,15 @@ namespace CassandraAPI.Controllers
             this._carbonBussinessFlow = _carbonBussinessFlow;
         }
         [HttpGet("/carbon/history")]
-        public List<CarbonHistoryEntity> CarbonHistory(int userId)
+        public List<CarbonHistoryEntity> CarbonHistory([FromQuery] int userId)
         {
             return _carbonBussinessFlow.CarbonHistoryById(userId);
+        }
+
+        [HttpGet("/carbon/today")]
+        public int CarbonToday()
+        {
+            return _carbonBussinessFlow.CarbonToday();
         }
     }
 }
