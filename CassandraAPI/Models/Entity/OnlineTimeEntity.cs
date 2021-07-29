@@ -21,8 +21,8 @@ namespace CassandraAPI.Models
         [Column("time_online")]
         public int timeOnline { get; set; }
 
-        [Column("updated_at")]
-        public DateTime updatedAt { get; set; }
+        [Column("created_at")]
+        public DateTime createdAt { get; set; }
 
         [ForeignKey("userId")]
         public UserEntity userEntity { get; set; }

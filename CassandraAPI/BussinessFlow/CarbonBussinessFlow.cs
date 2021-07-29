@@ -22,9 +22,10 @@ namespace CassandraAPI.BussinessFlow
             return this.baseRepository.GetInclude<CarbonHistoryEntity>(null, orderBy: orderBy, filter: a => a.userId == userId);
         }
 
-        public int TotalCarbon(int userId)
+        public int TotalCarbonById(int userId)
         {
-            return this.baseRepository.GetItem<CarbonRankingEntity>(a=>a.userId == userId).carbonAmount;
+            List<CarbonHistoryEntity> carbonHistory = this.baseRepository.Gets<CarbonHistoryEntity>(a => a.userId == userId);
+            return carbonHistory.Select(a=>a.carbonAmount).Sum();
         }
 
         public double TotalEarn(int userId)
@@ -35,16 +36,21 @@ namespace CassandraAPI.BussinessFlow
             return TotalEarn;
         }
 
-        public int TotalToday(int userId)
+        public int TotalTodayById(int userId)
         {
             return this.baseRepository.GetItem<CarbonPerDayEntity>(a=>a.userId == userId).carbonPerDay;
         }
 
-        public double TodayEarn(int userId)
+        public double TodayEarnById(int userId)
         {
-            DateTime today = DateTime.Now;
-            //List<OnlineTimeEntity> userTimeInfo = this.baseRepository.Gets<CarbonPerHourEntity>(a => a.userId == userId && a);
-            return this.baseRepository.GetItem<CarbonPerDayEntity>(a => a.userId == userId).carbonPerDay;
+            DateTime today = DateTime.Now.Date;
+            List<OnlineTimeEntity> userTimeInfo = this.baseRepository.Gets<OnlineTimeEntity>(a => a.userId == userId).ToList();
+            int time = userTimeInfo.Where(a=>a.createdAt.Date == today).Select(a => a.timeOnline).Sum();
+            return (time/60000)*0.0625;
+        }
+        public double AvgCarbonbyId(int userId)
+        {
+            return TotalCarbonById(userId)/this.baseRepository.Gets<CarbonHistoryEntity>(a=>a.userId == userId).Select(a=>a.distanceTotal).Sum();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace CassandraAPI.Controllers
 {
     public class VehicleController : ControllerBase
     {
-        private readonly VehicleBussinessFlow _VehicleBussinessFlow;
+        private readonly VehicleBussinessFlow _VehicleBussinessFlow;S
         public VehicleController(VehicleBussinessFlow _VehicleBussinessFlow)
         {
             this._VehicleBussinessFlow = _VehicleBussinessFlow;

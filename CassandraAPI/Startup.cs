@@ -21,6 +21,7 @@ namespace CassandraAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,7 +37,9 @@ namespace CassandraAPI
             services.AddScoped<MainContext>();
             //BussinessFlow
             services.AddScoped<HealthCheckBussinessFlow>();
-
+            services.AddScoped<CarbonBussinessFlow>();
+            services.AddScoped<LoginBussinessFlow>();
+            services.AddScoped<VehicleBussinessFlow>();
             //BussinessLogic
 
             //Repository
@@ -45,6 +48,17 @@ namespace CassandraAPI
             services.AddDbContext<MainContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("postgres")
                 ));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:3000")
+                                          .AllowAnyHeader()
+                                          .AllowAnyMethod();
+                                  });
+            });
 
             services.AddControllers();
         }
@@ -61,7 +75,11 @@ namespace CassandraAPI
 
             app.UseRouting();
 
+            app.UseCors();
+
             app.UseAuthorization();
+
+            app.UseCors(option => option.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseEndpoints(endpoints =>
             {
