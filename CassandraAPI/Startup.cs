@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +12,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using CassandraAPI.Repository;
+using CassandraAPI.BussinessFlow;
+using CassandraAPI.Data;
+
 
 namespace CassandraAPI
 {
@@ -26,6 +31,21 @@ namespace CassandraAPI
         // This method gets called by the runtime. Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
+            var sqlConnectionString = Configuration.GetConnectionString("postgres");
+            var sqlConnectionStringReadOnly = Configuration.GetConnectionString("postgresReadOnly");
+            services.AddScoped<MainContext>();
+            //BussinessFlow
+            services.AddScoped<HealthCheckBussinessFlow>();
+
+            //BussinessLogic
+
+            //Repository
+            services.AddScoped<IBaseRepository, BaseRepository>();
+
+            services.AddDbContext<MainContext>(options =>
+            options.UseNpgsql(Configuration.GetConnectionString("postgres")
+                ));
+
             services.AddControllers();
         }
 

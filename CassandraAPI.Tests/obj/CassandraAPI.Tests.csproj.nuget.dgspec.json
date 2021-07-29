@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI.Tests\\CassandraAPI.Tests.csproj": {}
+    "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI.Tests\\CassandraAPI.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI.Tests\\CassandraAPI.Tests.csproj": {
+    "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI.Tests\\CassandraAPI.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI.Tests\\CassandraAPI.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI.Tests\\CassandraAPI.Tests.csproj",
         "projectName": "CassandraAPI.Tests",
-        "projectPath": "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI.Tests\\CassandraAPI.Tests.csproj",
-        "packagesPath": "C:\\Users\\Matupoom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI.Tests\\obj\\",
+        "projectPath": "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI.Tests\\CassandraAPI.Tests.csproj",
+        "packagesPath": "C:\\Users\\ptmna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Matupoom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ptmna\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI\\CassandraAPI.csproj": {
-                "projectPath": "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI\\CassandraAPI.csproj"
+              "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI\\CassandraAPI.csproj": {
+                "projectPath": "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI\\CassandraAPI.csproj"
               }
             }
           }
@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[15.5.0, )"
             },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            },
             "xunit": {
               "target": "Package",
               "version": "[2.3.1, )"
@@ -91,21 +95,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI\\CassandraAPI.csproj": {
+    "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI\\CassandraAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI\\CassandraAPI.csproj",
+        "projectUniqueName": "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI\\CassandraAPI.csproj",
         "projectName": "CassandraAPI",
-        "projectPath": "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI\\CassandraAPI.csproj",
-        "packagesPath": "C:\\Users\\Matupoom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matupoom\\source\\repos\\CassandraAPI\\CassandraAPI\\obj\\",
+        "projectPath": "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI\\CassandraAPI.csproj",
+        "packagesPath": "C:\\Users\\ptmna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ptmna\\Documents\\GitHub\\CassandraAPI\\CassandraAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Matupoom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ptmna\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -134,6 +138,14 @@
             "Amazon.Lambda.AspNetCoreServer": {
               "target": "Package",
               "version": "[5.3.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.7, )"
             }
           },
           "imports": [
@@ -154,7 +166,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
