@@ -47,9 +47,9 @@ namespace CassandraAPI.BussinessFlow
             return this.baseRepository.GetItem<CarbonPerDayEntity>(a=>a.userId == userId).carbonPerDay;
         }
 
-        public int CarbonToday()
+        public int CarbonByDay(DateTime dateTime)
         {
-            return this.baseRepository.Gets<CarbonPerDayEntity>().Select(a=>a.carbonPerDay).Sum();
+            return this.baseRepository.Gets<CarbonPerDayEntity>(a => a.time.Date == dateTime.Date).Select(a => a.carbonPerDay).Sum();
         }
 
         public double TodayEarnById(int userId)
@@ -62,6 +62,66 @@ namespace CassandraAPI.BussinessFlow
         public double AvgCarbonbyId(int userId)
         {
             return TotalCarbonById(userId)/this.baseRepository.Gets<CarbonHistoryEntity>(a=>a.userId == userId).Select(a=>a.distanceTotal).Sum();
+        }
+        public double AvgCarbon()
+        {
+            return (double)TotalCarbon() / (double)this.baseRepository.Gets<CarbonHistoryEntity>().Select(a => a.distanceTotal).Sum();
+        }
+        public List<CarbonPerHourResponse> CarbonPerHour()
+        {
+            List<CarbonPerHourEntity> toDayCarbon = this.baseRepository.Gets<CarbonPerHourEntity>(a=>a.time.Date == DateTime.Now.Date);
+            DateTime now = DateTime.Now;
+            DateTime startTime = DateTime.Today.AddDays(-1).AddHours(23);
+            List<CarbonPerHourResponse> carbonHours = new List<CarbonPerHourResponse>();
+            int i = 0;
+            while (startTime.Date != now.Date && startTime.Hour != now.Hour)
+            {
+                Console.WriteLine(now);
+                List<CarbonPerHourEntity> temp = toDayCarbon.Where(a=>a.time.Hour == now.Hour).ToList();
+                now = now.AddHours(-1);
+
+                CarbonPerHourResponse carbonHour = new CarbonPerHourResponse()
+                {
+                    carbon = temp.Select(a=>a.carbon).Sum(),
+                    dateTime = temp.Select(a=>a.time).FirstOrDefault()
+                };
+                carbonHours.Add(carbonHour);
+            }
+            return carbonHours.OrderBy(a => a.dateTime).ToList();
+        }
+
+        public List<CarbonPerHourEntity> createCarbonperhours(List<CarbonPerHourEntity> carbonPerHours)
+        {
+            return this.baseRepository.CreateList(carbonPerHours);
+        }
+
+        public List<CarbonPerDayEntity> createCarbonperDays(List<CarbonPerDayEntity> carbonPerDays)
+        {
+            return this.baseRepository.CreateList(carbonPerDays);
+        }
+
+        public CarbonHistoryEntity createCarbonHistory(CarbonHistoryEntity carbonHistory)
+        {
+            return this.baseRepository.Create(carbonHistory);
+        }
+        public List<CarbonPerHourResponse> CarbonPerHourFromDay(DateTime dateTime)
+        {
+            DateTime startTime = dateTime.Date;
+            List<CarbonPerHourEntity> toDayCarbon = this.baseRepository.Gets<CarbonPerHourEntity>(a => a.time.Date == startTime);
+            List<CarbonPerHourResponse> carbonHourDays = new List<CarbonPerHourResponse>();
+
+            for (int i = 0; i <= 23; i++)
+            {
+                List<CarbonPerHourEntity> temp = toDayCarbon.Where(a => a.time == startTime).ToList();
+                startTime = startTime.AddHours(1);
+                CarbonPerHourResponse carbonPerHour = new CarbonPerHourResponse()
+                {
+                    carbon = temp.Select(a => a.carbon).Sum(),
+                    dateTime = temp.Select(a => a.time).FirstOrDefault()
+                };
+                carbonHourDays.Add(carbonPerHour);
+            }
+            return carbonHourDays;
         }
     }
 }

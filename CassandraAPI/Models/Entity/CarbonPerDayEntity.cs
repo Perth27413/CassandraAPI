@@ -21,7 +21,7 @@ namespace CassandraAPI.Models
         public int carbonPerDay { get; set; }
 
         [Column("distance_total")]
-        public int distanceTotal { get; set; }
+        public double distanceTotal { get; set; }
         [Column("user_id")]
         public int userId { get; set; }
 
