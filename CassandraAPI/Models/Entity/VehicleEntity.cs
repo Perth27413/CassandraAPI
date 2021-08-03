@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CassandraAPI.Models
@@ -26,12 +27,15 @@ namespace CassandraAPI.Models
         [Column("model_id")]
         public int modelId { get; set; }
 
+        [Column("co2")]
+        public double co2 { get; set; }
+        
         [ForeignKey("brandId")]
         public BrandEntity brandEntity { get; set; }
-
+        
         [ForeignKey("typeId")]
         public TypeEntity typeEntity { get; set; }
-
+        
         [ForeignKey("modelId")]
         public ModelEntity modelEntity { get; set; }
 

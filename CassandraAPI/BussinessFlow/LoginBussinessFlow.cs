@@ -7,15 +7,18 @@ using CassandraAPI.Repository;
 using CassandraAPI.BussinessLogic;
 using CassandraAPI.BussinessFlow;
 using System.Linq;
+using CassandraAPI.Data;
 
 namespace CassandraAPI.BussinessFlow
 {
     public class LoginBussinessFlow
     {
         private readonly IBaseRepository baseRepository;
-        public LoginBussinessFlow(IBaseRepository baseRepository)
+        private readonly MainContext context;
+        public LoginBussinessFlow(IBaseRepository baseRepository, MainContext context)
         {
             this.baseRepository = baseRepository;
+            this.context = context;
         }
         public bool LoginCheck(LoginRequest loginRequest)
         {
@@ -40,6 +43,11 @@ namespace CassandraAPI.BussinessFlow
                 position = 1
             };
             return this.baseRepository.Create<UserEntity>(newUser); ;
+        }
+
+        public List<UserCarbonEntity> getAllUser()
+        {
+            return this.baseRepository.GetInclude<UserCarbonEntity>(null, includeProperties: "userEntity").OrderBy(a=>a.carbon).ToList();
         }
     }
 }

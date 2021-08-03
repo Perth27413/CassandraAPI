@@ -28,5 +28,11 @@ namespace CassandraAPI.Controllers
         {
             return _bussinessFlow.UserRegister(loginRequest);
         }
+
+        [HttpGet("/user/all")]
+        public List<UserCarbonEntity> getUser()
+        {
+            return _bussinessFlow.getAllUser();
+        }
     }
 }

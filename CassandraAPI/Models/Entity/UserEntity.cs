@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CassandraAPI.Models
@@ -38,7 +39,13 @@ namespace CassandraAPI.Models
         [Column("vehicle_year")]
         public int vehicleYear { get; set; }
 
+        [Column("profile_pic")]
+        public string profilePic { get; set; }
+        [JsonIgnore]
         [ForeignKey("position")]
         public PositionEntity positionEntity { get; set; }
+        [JsonIgnore]
+        [ForeignKey("vehicle")]
+        public VehicleEntity vehicleEntity { get; set; }
     }
 }

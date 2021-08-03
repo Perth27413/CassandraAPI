@@ -17,10 +17,11 @@ namespace CassandraAPI.Data
         public DbSet<HealthCheckEntity> healthCheckEntity { get; set; }
         public DbSet<OnlineTimeEntity> onlineTimeEntity { get; set; }
         public DbSet<PositionEntity> positionEntity { get; set; }
-        public DbSet<UserEntity> UserEntity { get; set; }
-        public DbSet<VehicleEntity> VehicleEntity { get; set; }
-        public DbSet<BrandEntity> BrandEntity { get; set; }
-        public DbSet<TypeEntity> TypeEntity { get; set; }
-        public DbSet<ModelEntity> ModelEntity { get; set; }
+        public DbSet<UserEntity> userEntity { get; set; }
+        public DbSet<VehicleEntity> vehicleEntity { get; set; }
+        public DbSet<BrandEntity> brandEntity { get; set; }
+        public DbSet<TypeEntity> typeEntity { get; set; }
+        public DbSet<ModelEntity> modelEntity { get; set; }
+        public DbSet<UserCarbonEntity> userCarbonEntity { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CassandraAPI.Models
@@ -25,7 +26,7 @@ namespace CassandraAPI.Models
 
         [Column("updated_at")]
         public DateTime updatedAt { get; set; }
-
+        [JsonIgnore]
         [ForeignKey("userId")]
         public UserEntity userEntity { get; set; }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using CassandraAPI.Models;
 
@@ -19,14 +20,14 @@ namespace CassandraAPI.Models
         public int userId { get; set; }
 
         [Column("carbon_amount")]
-        public int carbonAmount { get; set; }
+        public double carbonAmount { get; set; }
 
         [Column("distance")]
-        public int distanceTotal { get; set; }
+        public double distanceTotal { get; set; }
 
         [Column("created_at")]
         public DateTime createdAt { get; set; }
-
+        [JsonIgnore]
         [ForeignKey("userId")]
         public UserEntity userEntity { get; set; }
     }

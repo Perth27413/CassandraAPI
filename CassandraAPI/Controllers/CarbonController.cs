@@ -23,7 +23,7 @@ namespace CassandraAPI.Controllers
         }
 
         [HttpGet("/carbon/byDay")]
-        public int CarbonToday([FromQuery] DateTime dateTime)
+        public double CarbonToday([FromQuery] DateTime dateTime)
         {
             return _carbonBussinessFlow.CarbonByDay(dateTime);
         }
@@ -62,6 +62,36 @@ namespace CassandraAPI.Controllers
         public CarbonHistoryEntity createCarbonPerHour([FromBody] CarbonHistoryEntity carbonHistory)
         {
             return _carbonBussinessFlow.createCarbonHistory(carbonHistory);
+        }
+
+        [HttpGet("/carbon/range")]
+        public object carbonRange([FromQuery] DateTime startTime, DateTime endTime)
+        {
+            return _carbonBussinessFlow.CarbonRange(startTime, endTime);
+        }
+
+        [HttpPost("/carbon/log")]
+        public object createHistory([FromQuery] int userId, double distance)
+        {
+            return _carbonBussinessFlow.createHistory(userId, distance);
+        }
+
+        [HttpGet("/user/earn")]
+        public double TotalEarn()
+        {
+            return _carbonBussinessFlow.TotalEarn();
+        }
+
+        [HttpPost("/user/time")]
+        public OnlineTimeEntity CreateTime([FromQuery] int userId, double time)
+        {
+            return _carbonBussinessFlow.CreateOnlineTime(userId, time);
+        }
+
+        [HttpGet("/mobile/home")]
+        public object GetInfoMobile([FromQuery] int userId)
+        {
+            return _carbonBussinessFlow.GetInfoMobile(userId);
         }
     }
 }
