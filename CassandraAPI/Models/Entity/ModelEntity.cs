@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CassandraAPI.Models
 {
-    [Table("model", Schema = "public")]
+    [Table("vehicle_model", Schema = "public")]
     public class ModelEntity
     {
         [Key]

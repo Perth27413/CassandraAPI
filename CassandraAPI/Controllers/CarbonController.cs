@@ -89,9 +89,15 @@ namespace CassandraAPI.Controllers
         }
 
         [HttpGet("/mobile/home")]
-        public object GetInfoMobile([FromQuery] int userId)
+        public MobileHomeResponse GetInfoMobile([FromQuery] int userId)
         {
-            return _carbonBussinessFlow.GetInfoMobile(userId);
+           return _carbonBussinessFlow.GetInfoMobile(userId);
+        }
+
+        [HttpGet("/mobile/history")]
+        public List<CarbonHistoryEntity> GetHistory([FromQuery] int userId)
+        {
+            return _carbonBussinessFlow.GetHistory(userId);
         }
     }
 }

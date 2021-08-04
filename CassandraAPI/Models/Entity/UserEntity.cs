@@ -41,11 +41,12 @@ namespace CassandraAPI.Models
 
         [Column("profile_pic")]
         public string profilePic { get; set; }
-        [JsonIgnore]
+        
         [ForeignKey("position")]
         public PositionEntity positionEntity { get; set; }
-        [JsonIgnore]
+        
         [ForeignKey("vehicle")]
         public VehicleEntity vehicleEntity { get; set; }
     }
+    
 }

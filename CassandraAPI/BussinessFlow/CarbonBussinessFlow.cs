@@ -164,7 +164,8 @@ namespace CassandraAPI.BussinessFlow
                 carbonAmount = carbon,
                 distanceTotal = distance,
                 userId = userId,
-                userEntity = this.baseRepository.GetItem<UserEntity>(a=>a.userId == userId),
+                userEntity = this.baseRepository.GetItem<UserEntity>(a => a.userId == userId),
+                tripTime = new Random().Next(5, 30),
                 createdAt = DateTime.Now
             };
             UserCarbonEntity userCarbon = this.baseRepository.GetItem<UserCarbonEntity>(a => a.userId == userId);
@@ -189,16 +190,35 @@ namespace CassandraAPI.BussinessFlow
             return this.baseRepository.Update(onlineTime);
         }
 
-        public object GetInfoMobile(int userId)
+        public MobileHomeResponse GetInfoMobile(int userId)
         {
             List<CarbonHistoryEntity> userHistory = this.baseRepository.Gets<CarbonHistoryEntity>(a=>a.userId == userId);
             double carbonTotal = userHistory.Select(a => a.carbonAmount).Sum();
             double carbonToday = userHistory.Where(a => a.createdAt.Date == DateTime.Today).Select(a => a.carbonAmount).Sum();
+            double carbonAvg = carbonTotal / userHistory.Select(a => a.distanceTotal).Sum();
             List<OnlineTimeEntity> onlineTimes = this.baseRepository.Gets<OnlineTimeEntity>(a => a.userId == userId);
             double earnTotal = ((onlineTimes.Select(a => a.timeOnline).Sum()/60)*0.125);
             double earnToday = ((onlineTimes.Where(a => a.createdAt.Date == DateTime.Today).Select(a => a.timeOnline).Sum()/60)*0.125);
-
-            return (carbonTotal, carbonToday, earnTotal, earnToday);
+            UserEntity userEntity = this.baseRepository.GetInclude<UserEntity>(null, filter: a => a.userId == userId, includeProperties: "positionEntity").FirstOrDefault();
+            userEntity.vehicleEntity = this.baseRepository.GetInclude<VehicleEntity>(null, filter:a=>a.vehicleId == userEntity.vehicle, includeProperties: "brandEntity,typeEntity,modelEntity").FirstOrDefault();
+            MobileHomeResponse response = new MobileHomeResponse()
+            {
+                TodayCarbon = carbonToday,
+                TodayEarn = earnToday,
+                TotalCarbon = carbonTotal,
+                TotalEarn = earnTotal,
+                AvgCarbon = carbonAvg,
+                TotalTime = onlineTimes.Select(a => a.timeOnline).Sum(),
+/*                vehicle = vehicle,*/
+                UserInfo = userEntity
+            };
+            return response;
         }
+
+        public List<CarbonHistoryEntity> GetHistory(int userId)
+        {
+            return this.baseRepository.GetInclude<CarbonHistoryEntity>(null, filter: a => a.userId == userId && a.createdAt.Date == DateTime.Today).OrderBy(a => a.createdAt).ToList();
+        }
+
     }
 }
