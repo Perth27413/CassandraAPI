@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using CassandraAPI.Repository;
-using CassandraAPI.Models;
-using System.Linq;
 using CassandraAPI.BussinessFlow;
+using CassandraAPI.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace CassandraAPI.Controllers
 {
@@ -24,7 +19,7 @@ namespace CassandraAPI.Controllers
         }
 
         [HttpPost("/Register")]
-        public UserEntity UserRegister(RegisterRequest loginRequest)
+        public UserEntity UserRegister([FromBody]RegisterRequest loginRequest)
         {
             return _bussinessFlow.UserRegister(loginRequest);
         }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CassandraAPI.Data;
 using CassandraAPI.Models;
 using CassandraAPI.Repository;
-using CassandraAPI.BussinessLogic;
-using CassandraAPI.BussinessFlow;
+using System.Collections.Generic;
 using System.Linq;
-using CassandraAPI.Data;
 
 namespace CassandraAPI.BussinessFlow
 {
@@ -39,10 +34,11 @@ namespace CassandraAPI.BussinessFlow
                 firstName = regis.firstName,
                 lastName = regis.lastName,
                 vehicleYear = regis.year,
-                vehicle = regis.vehicle,
-                position = 1
+                vehicle = 1,
+                position = 1,
+                profilePic = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F365webresources.com%2Fwp-content%2Fuploads%2F2016%2F09%2FFREE-PROFILE-AVATARS.png&f=1&nofb=1"
             };
-            return this.baseRepository.Create<UserEntity>(newUser); ;
+            return this.baseRepository.Create<UserEntity>(newUser);
         }
 
         public List<UserCarbonEntity> getAllUser()

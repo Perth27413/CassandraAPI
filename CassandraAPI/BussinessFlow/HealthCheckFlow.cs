@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CassandraAPI.Models;
+﻿using CassandraAPI.Models;
 using CassandraAPI.Repository;
-using CassandraAPI.BussinessLogic;
-using CassandraAPI.BussinessFlow;
+using System.Linq;
 
 namespace CassandraAPI.BussinessFlow
 {

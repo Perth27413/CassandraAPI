@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace CassandraAPI.Models
+﻿namespace CassandraAPI.Models
 {
     public class MobileHomeResponse
     {
@@ -13,6 +10,5 @@ namespace CassandraAPI.Models
         public double AvgCarbon { get; set; }
         public double TotalTime { get; set; }
 
-        /*public VehicleEntity vehicle { get; set; }*/
     }
 }

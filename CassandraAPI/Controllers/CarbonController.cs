@@ -1,11 +1,8 @@
+using CassandraAPI.BussinessFlow;
+using CassandraAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using CassandraAPI.Repository;
-using CassandraAPI.Models;
-using CassandraAPI.BussinessFlow;
 
 namespace CassandraAPI.Controllers
 {
@@ -22,40 +19,10 @@ namespace CassandraAPI.Controllers
             return _carbonBussinessFlow.CarbonHistoryById(userId);
         }
 
-        [HttpGet("/carbon/byDay")]
-        public double CarbonToday([FromQuery] DateTime dateTime)
-        {
-            return _carbonBussinessFlow.CarbonByDay(dateTime);
-        }
-
         [HttpGet("/carbon/avg")]
         public double CarbonAvg()
         {
             return _carbonBussinessFlow.AvgCarbon();
-        }
-
-        [HttpGet("/carbon/perhour")]
-        public List<CarbonPerHourResponse> CarbonPerHour()
-        {
-            return _carbonBussinessFlow.CarbonPerHour();
-        }
-
-        [HttpGet("/carbon/perhourfromday")]
-        public List<CarbonPerHourResponse> CarbonPerHourFromDay([FromQuery]DateTime dateTime)
-        {
-            return _carbonBussinessFlow.CarbonPerHourFromDay(dateTime);
-        }
-
-        [HttpPost("/carbon/perhour")]
-        public List<CarbonPerHourEntity> createCarbonPerHour([FromBody] List<CarbonPerHourEntity> carbonPerHour)
-        {
-            return _carbonBussinessFlow.createCarbonperhours(carbonPerHour);
-        }
-
-        [HttpPost("/carbon/perday")]
-        public List<CarbonPerDayEntity> createCarbonPerday([FromBody] List<CarbonPerDayEntity> carbonPerDay)
-        {
-            return _carbonBussinessFlow.createCarbonperDays(carbonPerDay);
         }
 
         [HttpPost("/carbon/history")]
@@ -99,5 +66,12 @@ namespace CassandraAPI.Controllers
         {
             return _carbonBussinessFlow.GetHistory(userId);
         }
+
+        [HttpGet("/carbon/perhourfromday")]
+        public object getCarbonPerHourFromDay([FromQuery] DateTime dateTime)
+        {
+            return _carbonBussinessFlow.CarbonInDay(dateTime);
+        }
+
     }
 }

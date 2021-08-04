@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using CassandraAPI.Repository;
-using CassandraAPI.Models;
 using CassandraAPI.BussinessFlow;
+using Microsoft.AspNetCore.Mvc;
 namespace CassandraAPI.Controllers
 {
     public class HealthCheckController : ControllerBase
