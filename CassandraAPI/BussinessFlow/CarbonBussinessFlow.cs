@@ -116,11 +116,11 @@ namespace CassandraAPI.BussinessFlow
 
         public MobileHomeResponse GetInfoMobile(int userId)
         {
-            List<CarbonHistoryEntity> userHistory = this.baseRepository.Gets<CarbonHistoryEntity>(a=>a.userId == userId);
+            List<CarbonHistoryEntity> userHistory = this.baseRepository.GetInclude<CarbonHistoryEntity>(null, a=>a.userId == userId);
             double carbonTotal = userHistory.Select(a => a.carbonAmount).Sum();
             double carbonToday = userHistory.Where(a => a.createdAt.Date == DateTime.Today).Select(a => a.carbonAmount).Sum();
             double carbonAvg = carbonTotal / userHistory.Select(a => a.distanceTotal).Sum();
-            List<OnlineTimeEntity> onlineTimes = this.baseRepository.Gets<OnlineTimeEntity>(a => a.userId == userId);
+            List<OnlineTimeEntity> onlineTimes = this.baseRepository.GetInclude<OnlineTimeEntity>(null, a => a.userId == userId);
             double earnTotal = ((onlineTimes.Select(a => a.timeOnline).Sum()/60)*0.125);
             double earnToday = ((onlineTimes.Where(a => a.createdAt.Date == DateTime.Today).Select(a => a.timeOnline).Sum()/60)*0.125);
             UserEntity userEntity = this.baseRepository.GetInclude<UserEntity>(null, filter: a => a.userId == userId, includeProperties: "positionEntity").FirstOrDefault();
