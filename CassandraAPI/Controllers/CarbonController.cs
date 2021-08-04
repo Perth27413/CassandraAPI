@@ -72,6 +72,5 @@ namespace CassandraAPI.Controllers
         {
             return _carbonBussinessFlow.CarbonInDay(dateTime);
         }
-
     }
 }
