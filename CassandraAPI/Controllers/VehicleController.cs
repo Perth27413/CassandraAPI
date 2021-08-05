@@ -28,11 +28,5 @@ namespace CassandraAPI.Controllers
         {
             return _VehicleBussinessFlow.getModels();
         }
-
-        [HttpGet("/user/vehicle")]
-        public List<BrandEntity> getUserVehicles()
-        {
-            return _VehicleBussinessFlow.getBrands();
-        }
     }
 }

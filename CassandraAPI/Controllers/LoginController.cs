@@ -29,5 +29,11 @@ namespace CassandraAPI.Controllers
         {
             return _bussinessFlow.getAllUser();
         }
+
+        [HttpGet("/user/vehicle")]
+        public object getVehicle()
+        {
+            return _bussinessFlow.getVehicle();
+        }
     }
 }
