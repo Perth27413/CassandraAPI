@@ -33,7 +33,7 @@ namespace CassandraAPI.BussinessFlow
                 firstName = regis.firstName,
                 lastName = regis.lastName,
                 vehicleYear = regis.year,
-                vehicle = 1,
+                vehicle = regis.vehicle,
                 position = 1,
                 profilePic = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F365webresources.com%2Fwp-content%2Fuploads%2F2016%2F09%2FFREE-PROFILE-AVATARS.png&f=1&nofb=1"
             };
@@ -44,15 +44,9 @@ namespace CassandraAPI.BussinessFlow
                 createdAt = DateTime.Now,
                 timeOnline = 0
             };
-            this.baseRepository.Create(new OnlineTimeEntity()
-            {
-                userId = response.userId,
-                createdAt = DateTime.Now,
-                timeOnline = 0
-            }
-            );
+            this.baseRepository.Create(onlineTime);
 
-            return this.baseRepository.Create<UserEntity>(newUser);
+            return response;
         }
 
         public List<UserCarbonEntity> getAllUser()
@@ -72,6 +66,27 @@ namespace CassandraAPI.BussinessFlow
                     })
                 })
             });
+            return response;
+        }
+        public object getVehiclenew()
+        {
+            List<VehicleEntity> vehicleEntities = this.baseRepository.GetInclude<VehicleEntity>(null, includeProperties: "brandEntity,typeEntity,modelEntity");
+            List<BrandEntity> brands = vehicleEntities.Select(a => a.brandEntity).ToList();
+            List<TypeEntity> types = vehicleEntities.Select(a => a.typeEntity).ToList();
+            List<ModelEntity> models = vehicleEntities.Select(a => a.modelEntity).ToList();
+            List<VehicleResponse> responses = new List<VehicleResponse>();
+            object response = vehicleEntities.GroupBy(b => b.brandId).Select(b => new {
+                    brandId = b.Key,
+                    brand = brands.Where(a=>a.brandId == b.Key).Select(a=>a.brand).FirstOrDefault(),
+                    type = b.GroupBy(c => c.typeId).Select(c => new {
+                        typeId = c.Key,
+                        type = types.Where(a=>a.typeId == c.Key).Select(a=>a.type).FirstOrDefault(),
+                        model = c.GroupBy(d => d.modelId).Select(d => new {
+                            modelId = d.Key,
+                            model = models.Where(a=>a.modelId == d.Key).Select(a=>a.model).FirstOrDefault()
+                        })
+                    })
+                });
             return response;
         }
 

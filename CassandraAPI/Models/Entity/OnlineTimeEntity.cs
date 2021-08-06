@@ -20,7 +20,7 @@ namespace CassandraAPI.Models
 
         [Column("created_at")]
         public DateTime createdAt { get; set; }
-        [JsonIgnore]
+        
         [ForeignKey("userId")]
         public UserEntity userEntity { get; set; }
     }

@@ -38,9 +38,9 @@ namespace CassandraAPI.Controllers
         }
 
         [HttpPost("/carbon/log")]
-        public object createHistory([FromQuery] int userId, double distance)
+        public object createHistory([FromQuery] int userId, double distance, double tripTime)
         {
-            return _carbonBussinessFlow.createHistory(userId, distance);
+            return _carbonBussinessFlow.createHistory(userId, distance, tripTime);
         }
 
         [HttpGet("/user/earn")]

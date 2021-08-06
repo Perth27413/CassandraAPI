@@ -33,7 +33,7 @@ namespace CassandraAPI.Controllers
         [HttpGet("/user/vehicle")]
         public object getVehicle()
         {
-            return _bussinessFlow.getVehicle();
+            return _bussinessFlow.getVehiclenew();
         }
     }
 }
